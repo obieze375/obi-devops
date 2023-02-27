@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-obi
+  labels:
+    app: jenkins-obi
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: jenkins-obi
+  template:
+    metadata:
+      labels:
+        app: jenkins-obi
+    spec:
+      containers:
+      - name: jenkins-obi
+        image: jenkins-obi
+        resources:
+          requests:
+            cpu: "100m"
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3002
+
